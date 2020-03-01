@@ -1,0 +1,57 @@
+Tombstone:
+Insertion with words of size 100 and hash table of size 10
+0.0971147 ms
+Insertion with words of size 100 and hash table of size 100
+1.40456 ms
+Insertion with words of size 100 and hash table of size 1000
+80.9677 ms
+Insertion with words of size 100 and hash table of size 2500
+482.852 ms
+Insertion with words of size 100 and hash table of size 5000
+1899.09 ms
+Searching with words of size 100 and hash table of size 10
+0.074872 ms
+Searching with words of size 100 and hash table of size 100
+2.0514 ms
+Searching with words of size 100 and hash table of size 1000
+177.972 ms
+Searching with words of size 100 and hash table of size 2500
+1116.41 ms
+Searching with words of size 100 and hash table of size 5000
+4231.81 ms
+
+Double Hashing:
+Insertion with words of size 100 and hash table of size 10
+0.0673985 ms
+Insertion with words of size 100 and hash table of size 100
+1.68479 ms
+Insertion with words of size 100 and hash table of size 1000
+42.8962 ms
+Insertion with words of size 100 and hash table of size 2500
+242.756 ms
+Insertion with words of size 100 and hash table of size 5000
+916.468 ms
+Insertion with words of size 100 and hash table of size 5000
+923.072 ms
+Searching with words of size 100 and hash table of size 10
+0.0649546 ms
+Searching with words of size 100 and hash table of size 100
+1.88844 ms
+Searching with words of size 100 and hash table of size 1000
+154.565 ms
+Searching with words of size 100 and hash table of size 2500
+920.307 ms
+Searching with words of size 100 and hash table of size 5000
+3815.35 ms
+
+//random_searching(), then remove one and then searching
+Searching with words of size 100 and hash table of size 10
+0.0712054 ms
+Searching with words of size 100 and hash table of size 100
+2.23122 ms
+Searching with words of size 100 and hash table of size 1000
+146.471 ms
+Searching with words of size 100 and hash table of size 2500
+874.477 ms
+Searching with words of size 100 and hash table of size 5000
+3492.45 ms

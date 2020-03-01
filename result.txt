@@ -1,0 +1,74 @@
+All in avg of 10 times
+
+Tombstone:
+Insertion with words of size 100 and hash table of size 10
+0.0635927 ms
+Insertion with words of size 100 and hash table of size 100
+1.86934 ms
+Insertion with words of size 100 and hash table of size 1000
+78.458 ms
+Insertion with words of size 100 and hash table of size 2500
+460.967 ms
+Insertion with words of size 100 and hash table of size 5000
+1790.43 ms
+Searching with words of size 100 and hash table of size 10
+0.0672826 ms
+Searching with words of size 100 and hash table of size 100
+2.66299 ms
+Searching with words of size 100 and hash table of size 1000
+172.086 ms
+Searching with words of size 100 and hash table of size 2500
+1056.65 ms
+Searching with words of size 100 and hash table of size 5000
+4210.43 ms
+Deletion with words of size 100 and hash table of size 10
+0.0569042 ms
+Deletion with words of size 100 and hash table of size 100
+1.12755 ms
+Deletion with words of size 100 and hash table of size 1000
+70.9894 ms
+Deletion with words of size 100 and hash table of size 2500
+402.051 ms
+Deletion with words of size 100 and hash table of size 5000
+1588.17 ms
+
+Rehash:
+Deletion with words of size 100 and hash table of size 10
+0.140889 ms
+Deletion with words of size 100 and hash table of size 100
+30.1895 ms
+Deletion with words of size 100 and hash table of size 1000
+8183.25 ms
+Deletion with words of size 100 and hash table of size 2500
+109722 ms
+Deletion with words of size 100 and hash table of size 2500
+109444 ms
+Deletion with words of size 100 and hash table of size 2500
+109004 ms
+Deletion with words of size 100 and hash table of size 5000
+815626 ms
+
+	Searching first:
+	//With search one and delete one
+Deletion with words of size 100 and hash table of size 10
+0.298955 ms
+Deletion with words of size 100 and hash table of size 100
+29.2795 ms
+Deletion with words of size 100 and hash table of size 1000
+7522.15 ms
+Deletion with words of size 100 and hash table of size 2500
+100432 ms
+Deletion with words of size 100 and hash table of size 5000
+783653 ms
+
+//random_searching(), then remove one and then searching
+Searching with words of size 100 and hash table of size 10
+0.0580054 ms
+Searching with words of size 100 and hash table of size 100
+1.97252 ms
+Searching with words of size 100 and hash table of size 1000
+152.119 ms
+Searching with words of size 100 and hash table of size 2500
+966.179 ms
+Searching with words of size 100 and hash table of size 5000
+3889.45 ms
