@@ -1,0 +1,21 @@
+Insertion with words of size 100 and hash table of size 10
+0 ms
+Insertion with words of size 100 and hash table of size 100
+2.66833 ms
+Insertion with words of size 100 and hash table of size 1000
+173.717 ms
+Insertion with words of size 100 and hash table of size 2500
+665.117 ms
+Insertion with words of size 100 and hash table of size 5000
+1344.38 ms
+
+Insertion with words of size 100 and hash table of size 5000
+747.04 ms
+Insertion with words of size 100 and hash table of size 2500
+380.65 ms
+Insertion with words of size 100 and hash table of size 1000
+133.406 ms
+Insertion with words of size 100 and hash table of size 100
+3.325 ms
+Insertion with words of size 100 and hash table of size 10
+0.335333 ms

@@ -7,8 +7,8 @@
 #include <chrono>
 #include <ctime>
 
-#define SIZE 5000
-#define STR_SIZE 25
+#define SIZE 10
+#define STR_SIZE 100
 
 using namespace std;
 

@@ -12,6 +12,8 @@
 
 using namespace std;
 
+int largest_prime;
+
 class HashTable {
 	private:
 		string arr[SIZE];
@@ -47,7 +49,7 @@ int HashTable::hash(string key) {
 
 int HashTable::linear_probing(string key, string search_term = "") {
 	int ind = hash(key);
-	int step = 7 - (ind % 7);
+	int step = largest_prime - (ind % largest_prime);
 	// if(search_term == "")
 	// 	cerr << "original index of " << key <<" : " << ind << endl;
 
@@ -141,24 +143,36 @@ void test_deletion(HashTable *ht, vector<string> *v) {
 		ht->remove((*v)[i]);
 }
 
+bool is_prime(int num) {
+	for (int i = 2; i <= sqrt(num); ++i)
+		if(num % i == 0) 
+			return false;
+
+	return true;
+}
+
+int find_largest_prime(int num) {
+	for (int x = num; x >= 2; --x)
+		if(is_prime(x)) 
+			return x;
+}
+
 int main()
 {
 	srand(time(0));
 
-	HashTable hash_table;
+	largest_prime = find_largest_prime(SIZE);
 
-    auto start = chrono::high_resolution_clock::now();
-    auto stop = chrono::high_resolution_clock::now();
-    chrono::duration<double> result = stop - start;
+	HashTable hash_table;
 
 	double ms = 0.0;
 	for (int i = 0; i < 3; ++i)
 	{
 		auto v = test_insertion(&hash_table);
-    	start = chrono::high_resolution_clock::now();
+    	auto start = chrono::high_resolution_clock::now();
 		test_deletion(&hash_table, &v);
-    	stop = chrono::high_resolution_clock::now();
-   		result = stop - start;
+    	auto stop = chrono::high_resolution_clock::now();
+   		chrono::duration<double> result = stop - start;
 
 		ms += result.count() * 1000;
 	}
