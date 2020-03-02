@@ -6,7 +6,7 @@
 #include <math.h>
 #include <ctime>
 
-#define SIZE 5000
+#define SIZE 1000
 #define STR_SIZE 100
 
 using namespace std;
@@ -21,6 +21,7 @@ class HashTable {
 	private:
 		probing _probing;
 		string arr[SIZE];
+		//first for num_access, second for index
 		pair<int, int> counters[SIZE];
 
 		int hash(string); //Hash input string into index
@@ -202,27 +203,24 @@ int main()
 
 	HashTable hash_table(LINEAR_PROBING);
 
-    auto start = chrono::high_resolution_clock::now();
-    auto stop = chrono::high_resolution_clock::now();
-    chrono::duration<double> result = stop - start;
-
 	double ms = 0.0;
-	for (int i = 0; i < 5; ++i)
+	for (int i = 0; i < 3; ++i)
 	{
-		auto v = test_insertion(&hash_table);
-		random_searching(&hash_table, &v);
-		hash_table.remove(v[rand() % SIZE]);
+		// auto v = test_insertion(&hash_table);
+		// random_searching(&hash_table, &v);
+		// hash_table.remove(v[rand() % SIZE]);
     	auto start = chrono::high_resolution_clock::now();
-		test_searching(&hash_table, &v);
+		// test_deletion(&hash_table, &v);
+		test_insertion(&hash_table);
     	auto stop = chrono::high_resolution_clock::now();
    		chrono::duration<double> result = stop - start;
 
 		ms += result.count() * 1000;
 	}
-	ms /= 5.0;
+	ms /= 3.0;
 	
 	ofstream write("result_probing.txt", ios::app);
-	write << "Searching with words of size " << STR_SIZE 
+	write << "Deletion with words of size " << STR_SIZE 
 		<< " and hash table of size " << SIZE << '\n';
 	write << ms << " ms\n";
 	write.close();

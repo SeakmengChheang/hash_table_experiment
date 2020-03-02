@@ -67,3 +67,20 @@ Deletion with words of size 100 and hash table of size 2500
 422.056 ms
 Deletion with words of size 100 and hash table of size 5000
 1597.59 ms
+
+Rehash:
+Deletion with words of size 100 and hash table of size 10
+0.249324 ms
+Deletion with words of size 100 and hash table of size 100
+33.37 ms
+Deletion with words of size 100 and hash table of size 1000
+8786.38 ms
+Deletion with words of size 100 and hash table of size 2500
+111378 ms
+Deletion with words of size 100 and hash table of size 2500
+112317 ms
+Deletion with words of size 100 and hash table of size 5000
+802344 ms
+
+Deletion with words of size 100 and hash table of size 1000
+38.2099 ms

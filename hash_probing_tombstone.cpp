@@ -6,7 +6,7 @@
 #include <chrono>
 #include <ctime>
 
-#define SIZE 5000
+#define SIZE 1000
 #define STR_SIZE 100
 
 using namespace std;
@@ -161,23 +161,20 @@ int main()
 	srand(time(0));
 
 	HashTable hash_table(LINEAR_PROBING);
-
-    auto start = chrono::high_resolution_clock::now();
-    auto stop = chrono::high_resolution_clock::now();
-    chrono::duration<double> result = stop - start;
-
+	
 	double ms = 0.0;
-	for (int i = 0; i < 10; ++i)
+	for (int i = 0; i < 3; ++i)
 	{
-		auto v = test_insertion(&hash_table);
-    	start = chrono::high_resolution_clock::now();
-		test_deletion(&hash_table, &v);
-    	stop = chrono::high_resolution_clock::now();
-   		result = stop - start;
+		// auto v = test_insertion(&hash_table);
+    	auto start = chrono::high_resolution_clock::now();
+		// test_deletion(&hash_table, &v);
+		test_insertion(&hash_table);
+    	auto stop = chrono::high_resolution_clock::now();
+   		chrono::duration<double> result = stop - start;
 
 		ms += result.count() * 1000;
 	}
-	ms /= 10.0;
+	ms /= 3.0;
 	
 	ofstream write("result_probing.txt", ios::app);
 	write << "Deletion with words of size " << STR_SIZE 

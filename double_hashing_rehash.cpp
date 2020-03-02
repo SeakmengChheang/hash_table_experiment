@@ -17,6 +17,7 @@ inline bool descending_pair(const pair<int, int> &a, const pair<int, int> &b) {
 class HashTable {
 	private:
 		string arr[SIZE];
+		//first for num_access, second for index
 		pair<int, int> counters[SIZE];
 
 		int hash(string); //Hash input string into index
