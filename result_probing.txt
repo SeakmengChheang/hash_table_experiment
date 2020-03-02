@@ -55,3 +55,15 @@ Searching with words of size 100 and hash table of size 2500
 874.477 ms
 Searching with words of size 100 and hash table of size 5000
 3492.45 ms
+
+Tombstone:
+Deletion with words of size 100 and hash table of size 10
+0.0770187 ms
+Deletion with words of size 100 and hash table of size 100
+1.10018 ms
+Deletion with words of size 100 and hash table of size 1000
+71.4675 ms
+Deletion with words of size 100 and hash table of size 2500
+422.056 ms
+Deletion with words of size 100 and hash table of size 5000
+1597.59 ms

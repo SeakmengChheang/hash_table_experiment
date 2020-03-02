@@ -171,7 +171,7 @@ int main()
 	{
 		auto v = test_insertion(&hash_table);
     	start = chrono::high_resolution_clock::now();
-		test_searching(&hash_table, &v);
+		test_deletion(&hash_table, &v);
     	stop = chrono::high_resolution_clock::now();
    		result = stop - start;
 
@@ -180,7 +180,7 @@ int main()
 	ms /= 10.0;
 	
 	ofstream write("result_probing.txt", ios::app);
-	write << "Searching with words of size " << STR_SIZE 
+	write << "Deletion with words of size " << STR_SIZE 
 		<< " and hash table of size " << SIZE << '\n';
 	write << ms << " ms\n";
 	write.close();
