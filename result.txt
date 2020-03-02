@@ -72,3 +72,27 @@ Searching with words of size 100 and hash table of size 2500
 966.179 ms
 Searching with words of size 100 and hash table of size 5000
 3889.45 ms
+
+Rehash:
+Insertion with words of size 100 and hash table of size 10
+0.332667 ms
+Insertion with words of size 100 and hash table of size 100
+3.989 ms
+Insertion with words of size 100 and hash table of size 1000
+126.398 ms
+Insertion with words of size 100 and hash table of size 2500
+758.444 ms
+Insertion with words of size 100 and hash table of size 5000
+2922.78 ms
+
+Tombstone:
+Insertion with words of size 100 and hash table of size 10
+0 ms
+Insertion with words of size 100 and hash table of size 100
+3.00233 ms
+Insertion with words of size 100 and hash table of size 1000
+160.914 ms
+Insertion with words of size 100 and hash table of size 2500
+961.059 ms
+Insertion with words of size 100 and hash table of size 5000
+3784.75 ms

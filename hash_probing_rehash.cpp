@@ -5,8 +5,9 @@
 #include <fstream>
 #include <math.h>
 #include <ctime>
+#include <chrono>
 
-#define SIZE 1000
+#define SIZE 5000
 #define STR_SIZE 100
 
 using namespace std;
@@ -220,12 +221,12 @@ int main()
 	ms /= 3.0;
 	
 	ofstream write("result_probing.txt", ios::app);
-	write << "Deletion with words of size " << STR_SIZE 
+	write << "Insertion with words of size " << STR_SIZE 
 		<< " and hash table of size " << SIZE << '\n';
 	write << ms << " ms\n";
 	write.close();
 
-	cout << "DONE\n";
+	cout << ms << " ms DONE\n";
 
 	return 0;
 }

@@ -4,11 +4,15 @@
 #include <vector>
 #include <fstream>
 #include <math.h>
+#include <chrono>
+#include <ctime>
 
 #define SIZE 5000
-#define STR_SIZE 100
+#define STR_SIZE 25
 
 using namespace std;
+
+int largest_prime;
 
 inline bool descending_pair(const pair<int, int> &a, const pair<int, int> &b) {
 	return a.first > b.first;
@@ -65,7 +69,7 @@ int HashTable::hash(string key) {
 
 int HashTable::linear_probing(string key, string search_term = "") {
 	int ind = hash(key);
-	int step = 7 - (ind % 7);
+	int step = largest_prime - (ind % largest_prime);
 	// if(search_term == "")
 	// 	cerr << "original index of " << key <<" : " << ind << endl;
 
@@ -187,29 +191,46 @@ void random_searching(HashTable *ht, vector<string> *v) {
 		ht->search((*v)[rand() % SIZE]);
 }
 
+bool is_prime(int num) {
+	for (int i = 2; i <= sqrt(num); ++i)
+		if(num % i == 0) 
+			return false;
+
+	return true;
+}
+
+int find_largest_prime(int num) {
+	for (int x = num; x >= 2; --x)
+		if(is_prime(x)) 
+			return x;
+}
+
 int main()
 {
 	srand(time(0));
 
+	largest_prime = find_largest_prime(SIZE);
+
 	HashTable hash_table;
 
 	double ms = 0.0;
-	for (int i = 0; i < 10; ++i)
+	for (int i = 0; i < 3; ++i)
 	{
-		auto v = test_insertion(&hash_table);
-		random_searching(&hash_table, &v);
-		hash_table.remove(v[rand() % SIZE]);
-    	auto start = chrono::high_resolution_clock::now();
-		test_searching(&hash_table, &v);
-    	auto stop = chrono::high_resolution_clock::now();
-   		chrono::duration<double> result = stop - start;
+		// auto v = test_insertion(&hash_table);
+		// random_searching(&hash_table, &v);
+		// hash_table.remove(v[rand() % SIZE]);
+		auto start = chrono::high_resolution_clock::now();
+		// test_searching(&hash_table, &v);
+		test_insertion(&hash_table);
+		auto stop = chrono::high_resolution_clock::now();
+		chrono::duration<double> result = stop - start;
 
 		ms += result.count() * 1000;
 	}
-	ms /= 10.0;
+	ms /= 3.0;
 	
-	ofstream write("result.txt", ios::app);
-	write << "Searching with words of size " << STR_SIZE 
+	ofstream write("double_hashing.txt", ios::app);
+	write << "Insertion with words of size " << STR_SIZE 
 		<< " and hash table of size " << SIZE << '\n';
 	write << ms << " ms\n";
 	write.close();

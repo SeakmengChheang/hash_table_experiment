@@ -4,6 +4,8 @@
 #include <vector>
 #include <fstream>
 #include <math.h>
+#include <chrono>
+#include <ctime>
 
 #define SIZE 5000
 #define STR_SIZE 100
@@ -150,7 +152,7 @@ int main()
     chrono::duration<double> result = stop - start;
 
 	double ms = 0.0;
-	for (int i = 0; i < 10; ++i)
+	for (int i = 0; i < 3; ++i)
 	{
 		auto v = test_insertion(&hash_table);
     	start = chrono::high_resolution_clock::now();
@@ -160,15 +162,15 @@ int main()
 
 		ms += result.count() * 1000;
 	}
-	ms /= 10.0;
+	ms /= 3.0;
 	
-	ofstream write("result.txt", ios::app);
-	write << "Deletion with words of size " << STR_SIZE 
+	ofstream write("double_hashing.txt", ios::app);
+	write << "Insertion with words of size " << STR_SIZE 
 		<< " and hash table of size " << SIZE << '\n';
 	write << ms << " ms\n";
 	write.close();
 
-	cout << "DONE\n";
+	cout << ms << " ms DONE\n";
 
 	return 0;
 }

@@ -82,5 +82,39 @@ Deletion with words of size 100 and hash table of size 2500
 Deletion with words of size 100 and hash table of size 5000
 802344 ms
 
-Deletion with words of size 100 and hash table of size 1000
-38.2099 ms
+Insertion with words of size 100 and hash table of size 1000
+139.636 ms
+Insertion with words of size 100 and hash table of size 1000
+141.849 ms
+Insertion with words of size 100 and hash table of size 1000
+139.294 ms
+Insertion with words of size 100 and hash table of size 1000
+139.302 ms
+Insertion with words of size 100 and hash table of size 1000
+133.321 ms
+Insertion with words of size 100 and hash table of size 1000
+137.644 ms
+
+Tombstone:
+Insertion with words of size 100 and hash table of size 10
+0.332667 ms
+Insertion with words of size 100 and hash table of size 100
+4.332 ms
+Insertion with words of size 100 and hash table of size 1000
+244.645 ms
+Insertion with words of size 100 and hash table of size 2500
+1318.81 ms
+Insertion with words of size 100 and hash table of size 5000
+5180.33 ms
+
+Rehash:
+Insertion with words of size 100 and hash table of size 10
+0 ms
+Insertion with words of size 100 and hash table of size 100
+3.66767 ms
+Insertion with words of size 100 and hash table of size 1000
+135.626 ms
+Insertion with words of size 100 and hash table of size 2500
+765.963 ms
+Insertion with words of size 100 and hash table of size 5000
+2975.62 ms
