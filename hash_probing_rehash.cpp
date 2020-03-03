@@ -46,7 +46,7 @@ class HashTable {
 
 void HashTable::reset_counters() {
 	for (int i = 0; i < SIZE; ++i) {
-		counters[i].first = 0;
+		counters[i].first = -1;
 		counters[i].second = i;
 	}
 }
@@ -131,7 +131,10 @@ bool HashTable::search(string s) {
 	if (ind == -1)
 		return false;
 
-	counters[ind].first++;
+	if(counters[ind].first == -1)
+		counters[ind].second = 1;
+	else
+		counters[ind].first++;
 
 	return arr[ind] == s;
 }
@@ -144,14 +147,17 @@ void HashTable::remove(string s) {
 		return;
 
 	arr[ind] = "";
-	counters[ind].first = 0;
+	counters[ind].first = -1;
 	sort(counters, counters + SIZE, descending_pair);
 
 	string tmp[SIZE];
 	copy(begin(arr), end(arr), tmp);
 	reset_array();
 	for (int i = 0; i < SIZE; ++i) {
-		int ind = counters[i].second;
+		if(counters[i].second == -1)
+			break;
+
+		int ind = counters[i].first;
 		if(tmp[ind] != "")
 			insert(tmp[ind]);
 	}

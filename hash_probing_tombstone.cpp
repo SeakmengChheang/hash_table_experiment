@@ -124,6 +124,7 @@ void HashTable::remove(string s) {
 	// cerr << "Removed " << s << " at: " << ind << endl;
 }
 
+//
 string random_word(int num_chars) {
 	string str;
 	str.reserve(num_chars);
