@@ -32,7 +32,10 @@ bool HashTable::is_desired(int index, string key) {
 		// so we can insert at tombstone
 		if(arr[index] == "tombstone")
 			return true;
-	} 
+	} else {
+		if(arr[index] == "")
+			return false; //So we can break from while
+	}
 
 	return arr[index] == key;
 }
@@ -54,16 +57,12 @@ int HashTable::linear_probing(string key, string search_term = "") {
 
 	if(!is_desired(ind, search_term)) {
 		int old = ind++;
-		while(old != ind && !is_desired(ind, search_term)) {
-			//Searching
-			if(search_term == "")
-				if(arr[ind] == "")
-					return -1;
-
+		while(old != ind && !is_desired(ind, search_term))
 			ind = ++ind % SIZE;
-		}
 
 		if(old == ind) return -1;
+		
+		if(arr[ind] == "") return -1;
 	}
 
 	return ind % SIZE;
@@ -162,7 +161,7 @@ int main()
 	write << ms << " ms\n";
 	write.close();
 
-	cout << ms << "ms DONE\n";
+	std::cout << ms << "ms DONE\n";
 
 	return 0;
 }

@@ -16,27 +16,20 @@ inline bool descending_pair(const pair<int, int> &a, const pair<int, int> &b) {
 	return a.first > b.first;
 }
 
-enum probing {LINEAR_PROBING, QUADRATIC_PROBING};
-
 class HashTable {
 	private:
-		probing _probing;
 		string arr[SIZE];
 		//first for num_access, second for index
 		pair<int, int> counters[SIZE];
 
 		int hash(string); //Hash input string into index
 		int linear_probing(string, string); //return indexOfArray for inserting
-		int quadratic_probing(string, string); //return indexOfArray for inserting
 		bool is_desired(int, string);
 		void reset_counters();
 		void reset_array();
 
 	public:
-		HashTable(
-			probing probing_alog // Algorithm for insertion and searching
-		) {
-			_probing = probing_alog;
+		HashTable() {
 			reset_counters();
 		}
 		void insert(string);
@@ -57,6 +50,12 @@ void HashTable::reset_array() {
 }
 
 bool HashTable::is_desired(int index, string key) {
+	//Searching
+	if(key != "") {
+		if(arr[index] == "")
+			return false; //So we can break from while
+	}
+
 	return arr[index] == key;
 }
 
@@ -81,23 +80,9 @@ int HashTable::linear_probing(string key, string search_term = "") {
 			ind = ++ind % SIZE;
 
 		if(old == ind) return -1;
+
+		if(arr[ind] == "") return -1;
 	}
-
-	return ind % SIZE;
-}
-
-int HashTable::quadratic_probing(string key, string search_term = "") {
-	int ind = hash(key);
-
-	bool checked[SIZE];
-	int base = 1;
-	while(accumulate(begin(checked), end(checked), 0) != SIZE 
-		&& !is_desired(ind, search_term)) {
-			checked[ind] = true;
-			ind = (ind + (unsigned long int)pow(base++, 2)) % SIZE;
-		}
-
-	if(accumulate(begin(checked), end(checked), 0) == SIZE) return -1;
 
 	return ind % SIZE;
 }
@@ -106,11 +91,7 @@ int HashTable::quadratic_probing(string key, string search_term = "") {
 * Insert into appropiate index based on algorithm
 */
 void HashTable::insert(string s) {
-	int ind;
-	if(_probing == LINEAR_PROBING)
-		ind = linear_probing(s);
-	else
-		ind = quadratic_probing(s);
+	int ind = linear_probing(s);
 
 	if(ind == -1)
 		return;
@@ -122,11 +103,7 @@ void HashTable::insert(string s) {
 * If found return true, else false
 */
 bool HashTable::search(string s) {
-	int ind;
-	if(_probing == LINEAR_PROBING)
-		ind = linear_probing(s, s);
-	else
-		ind = quadratic_probing(s, s);
+	int ind = linear_probing(s, s);
 
 	if (ind == -1)
 		return false;
@@ -208,10 +185,10 @@ int main()
 {
 	srand(time(0));
 
-	HashTable hash_table(LINEAR_PROBING);
+	HashTable hash_table;
 
 	double ms = 0.0;
-	for (int i = 0; i < 3; ++i)
+	for (int i = 0; i < 10; ++i)
 	{
 		// auto v = test_insertion(&hash_table);
 		// random_searching(&hash_table, &v);
@@ -224,7 +201,7 @@ int main()
 
 		ms += result.count() * 1000;
 	}
-	ms /= 3.0;
+	ms /= 10.0;
 	
 	ofstream write("result_probing.txt", ios::app);
 	write << "Insertion with words of size " << STR_SIZE 

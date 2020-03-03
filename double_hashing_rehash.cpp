@@ -52,6 +52,12 @@ void HashTable::reset_array() {
 }
 
 bool HashTable::is_desired(int index, string key) {
+	//Searching
+	if(key != "") {
+		if(arr[index] == "")
+			return false; //So we can break from while
+	}
+
 	return arr[index] == key;
 }
 
@@ -80,6 +86,8 @@ int HashTable::linear_probing(string key, string search_term = "") {
 			ind = ++ind % SIZE;
 
 		if(old == ind) return -1;
+
+		if(arr[ind] == "") return -1;
 	}
 
 	return ind % SIZE;
