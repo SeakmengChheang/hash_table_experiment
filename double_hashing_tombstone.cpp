@@ -30,7 +30,12 @@ class HashTable {
 };
 
 bool HashTable::is_desired(int index, string key) {
-	if(key == "" && arr[index] == "tombstone") return true;
+	//if insertion key will be empty
+	if(key == "") {
+		// so we can insert at tombstone
+		if(arr[index] == "tombstone")
+			return true;
+	} 
 
 	return arr[index] == key;
 }
@@ -56,8 +61,14 @@ int HashTable::linear_probing(string key, string search_term = "") {
 	if(!is_desired(ind, search_term)) {
 		int old = ind;
 		ind += step;
-		while(old != ind && !is_desired(ind, search_term))
+		while(old != ind && !is_desired(ind, search_term)) {
+			//Searching
+			if(search_term == "")
+				if(arr[ind] == "")
+					return -1;
+
 			ind = ++ind % SIZE;
+		}
 
 		if(old == ind) return -1;
 	}

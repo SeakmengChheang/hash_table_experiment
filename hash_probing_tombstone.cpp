@@ -11,11 +11,8 @@
 
 using namespace std;
 
-enum probing {LINEAR_PROBING, QUADRATIC_PROBING};
-
 class HashTable {
 	private:
-		probing _probing;
 		string arr[SIZE];
 
 		int hash(string); //Hash input string into index
@@ -24,18 +21,18 @@ class HashTable {
 		bool is_desired(int, string);
 
 	public:
-		HashTable(
-			probing probing_alog // Algorithm for insertion and searching
-		) {
-			_probing = probing_alog;
-		}
 		void insert(string);
 		bool search(string);
 		void remove(string);
 };
 
 bool HashTable::is_desired(int index, string key) {
-	if(key == "" && arr[index] == "tombstone") return true;
+	//if insertion key will be empty
+	if(key == "") {
+		// so we can insert at tombstone
+		if(arr[index] == "tombstone")
+			return true;
+	} 
 
 	return arr[index] == key;
 }
@@ -57,27 +54,17 @@ int HashTable::linear_probing(string key, string search_term = "") {
 
 	if(!is_desired(ind, search_term)) {
 		int old = ind++;
-		while(old != ind && !is_desired(ind, search_term))
+		while(old != ind && !is_desired(ind, search_term)) {
+			//Searching
+			if(search_term == "")
+				if(arr[ind] == "")
+					return -1;
+
 			ind = ++ind % SIZE;
+		}
 
 		if(old == ind) return -1;
 	}
-
-	return ind % SIZE;
-}
-
-int HashTable::quadratic_probing(string key, string search_term = "") {
-	int ind = hash(key);
-
-	bool checked[SIZE];
-	int base = 1;
-	while(accumulate(begin(checked), end(checked), 0) != SIZE 
-		&& !is_desired(ind, search_term)) {
-			checked[ind] = true;
-			ind = (ind + (unsigned long int)pow(base++, 2)) % SIZE;
-		}
-
-	if(accumulate(begin(checked), end(checked), 0) == SIZE) return -1;
 
 	return ind % SIZE;
 }
@@ -86,11 +73,7 @@ int HashTable::quadratic_probing(string key, string search_term = "") {
 * Insert into appropiate index based on algorithm
 */
 void HashTable::insert(string s) {
-	int ind;
-	if(_probing == LINEAR_PROBING)
-		ind = linear_probing(s);
-	else
-		ind = quadratic_probing(s);
+	int ind = linear_probing(s);
 
 	if(ind == -1)
 		return;
@@ -102,11 +85,7 @@ void HashTable::insert(string s) {
 * If found return true, else false
 */
 bool HashTable::search(string s) {
-	int ind;
-	if(_probing == LINEAR_PROBING)
-		ind = linear_probing(s, s);
-	else
-		ind = quadratic_probing(s, s);
+	int ind = linear_probing(s, s);
 
 	if (ind == -1)
 		return false;
@@ -161,7 +140,7 @@ int main()
 {
 	srand(time(0));
 
-	HashTable hash_table(LINEAR_PROBING);
+	HashTable hash_table;
 	
 	double ms = 0.0;
 	for (int i = 0; i < 3; ++i)
