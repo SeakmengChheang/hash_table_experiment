@@ -157,7 +157,7 @@ void HashTable::remove(string s) {
 		if(counters[i].second == -1)
 			break;
 
-		int ind = counters[i].first;
+		int ind = counters[i].second;
 		if(tmp[ind] != "")
 			insert(tmp[ind]);
 	}
